@@ -1,0 +1,7 @@
+.archive/
+.venv/
+.env
+.DS_Store*
+.volumes/
+.terraform*
+builds/

@@ -1,0 +1,24 @@
+name: go-api-gateway-lambda
+
+services:
+    localstack:
+        env_file: ".env"
+        container_name: "localstack-pro"
+        image: localstack/localstack-pro:latest
+        environment:
+            - PERSISTENCE=0 # ensures that terraform state returns after localstack restarts
+            - SNAPSHOT_LOAD_STRATEGY=ON_STARTUP
+            - SNAPSHOT_SAVE_STRATEGY=ON_REQUEST
+            - AWS_REGION=eu-west-1
+        ports:
+            - "127.0.0.1:4566:4566" # LocalStack Gateway
+            - "127.0.0.1:4510-4559:4510-4559" # External services port range
+            - "127.0.0.1:443:443" # LocalStack HTTPS Gateway (Pro)
+        volumes:
+            - ".volumes/localstack:/var/lib/localstack"
+            - "/var/run/docker.sock:/var/run/docker.sock"
+        networks:
+            - network
+networks:
+    network:
+        driver: bridge
