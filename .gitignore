@@ -5,3 +5,5 @@
 .volumes/
 .terraform*
 builds/
+bootstrap.zip
+terraform.*
