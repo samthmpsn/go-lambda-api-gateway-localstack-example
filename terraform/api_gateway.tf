@@ -41,7 +41,7 @@ resource "aws_api_gateway_stage" "example" {
 resource "aws_lambda_function" "test_lambda" {
   filename      = "bootstrap.zip"
   function_name = "go-lambda-api-gateway"
-  role          = "arn:aws:iam::12345678910:role/some-role-name"
+  role          = "arn:aws:iam::123456789101:role/some-role-name"
   handler       = "bootstrap" # binary must be named 'bootstrap' as per AWS lambda requirements
   architectures = ["x86_64"]
   runtime       = "provided.al2" # go requires an os-only runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)
